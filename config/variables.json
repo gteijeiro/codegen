@@ -1,0 +1,12 @@
+{
+  "ProductName": "Demo.GenerateCode",
+  "Entity": "People",  
+  "globalPrompt": "Remplaza <%ProductName%> por Demo.GenerateCode, y <%Entity%> por People.",
+  "templatePrompts": {
+    "-Entity-Dto.txt": "Existen cuatro propieades, Id(int), Name(string), BirthOfDate(DateTime), y Age(int). Solo agrega las propiedades.",
+	  "-Entity-.txt": "Existen tres propieades, Id(int), Name(string), BirthOfDate(DateTime). Solo agrega las propiedades.",
+    "-Entity-Services.txt": " Ademas debe agregar en la service un metodo que calcule el la edad, y retorne el objeto, la fecha edad lo calcula del campo BirthOfDate.  No generes codigo adicional o otras clases.",
+    "I-Entity-Services.txt": "Agrega el contrato llamado ObtenerEdad y que retorna un la edad."
+  }
+}
+  

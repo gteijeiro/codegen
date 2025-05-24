@@ -1,0 +1,95 @@
+﻿using AutoMapper;
+using <%ProductName%>.Domain.DTO;
+using <%ProductName%>.Domain.Entity;
+using <%ProductName%>.Domain.Interfaces;
+using <%ProductName%>.Domain.Interfaces.Services;
+
+namespace <%ProductName%>.Service
+{
+    public class <%Entity%>Service : I<%Entity%>Service
+    {
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
+
+        public <%Entity%>Service(IUnitOfWork unitOfWork, IMapper mapper)
+        {
+            _unitOfWork = unitOfWork;
+            _mapper = mapper;
+        }
+
+        public async Task<IList<<%Entity%>Dto>> GetAll()
+        {
+            var entityList = await _unitOfWork.Repository<<%Entity%>>().GetAllAsync();
+            return _mapper.Map<IList<<%Entity%>Dto>>(entityList);
+        }
+
+        public async Task<<%Entity%>Dto> GetOne(int id)
+        {
+            var entity = await _unitOfWork.Repository<<%Entity%>>().FindAsync(id);
+            return _mapper.Map<<%Entity%>Dto>(entity);
+        }
+
+        public async Task Update(<%Entity%>Dto entityInput)
+        {
+            try
+            {
+                await _unitOfWork.BeginTransaction();
+
+                var entityRepo = _unitOfWork.Repository<<%Entity%>>();
+                var entity = await workRepos.FindAsync(entityInput.Id);
+                if (entity == null)
+                    throw new KeyNotFoundException();
+
+                _mapper.Map(entityInput, entity);
+
+                await _unitOfWork.CommitTransaction();
+            }
+            catch (Exception)
+            {
+                await _unitOfWork.RollbackTransaction();
+                throw;
+            }
+        }
+
+        public async Task Add(<%Entity%>Dto entityInput)
+        {
+            try
+            {
+                await _unitOfWork.BeginTransaction();
+
+                var entityRepo = _unitOfWork.Repository<<%Entity%>>();
+                var entity = _mapper.Map<<%Entity%>>(entityInput);
+                await entityRepo.InsertAsync(entity);
+
+                await _unitOfWork.CommitTransaction();
+            }
+            catch (Exception)
+            {
+                await _unitOfWork.RollbackTransaction();
+                throw;
+            }
+        }
+
+        public async Task Delete(int id)
+        {
+            try
+            {
+                await _unitOfWork.BeginTransaction();
+
+                var entityRepo = _unitOfWork.Repository<<%Entity%>>();
+                var entity = await entityRepo.FindAsync(id);
+                if (entity == null)
+                    throw new KeyNotFoundException();
+
+                await entityRepo.DeleteAsync(entity);
+
+                await _unitOfWork.CommitTransaction();
+            }
+            catch (Exception)
+            {
+                await _unitOfWork.RollbackTransaction();
+                throw;
+            }
+        }
+    }
+}

@@ -1,0 +1,1 @@
+streamlit, streamlit-chat, azure-ai-inference, azure-core

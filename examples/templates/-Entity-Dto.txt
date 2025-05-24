@@ -1,0 +1,6 @@
+namespace <%ProductName%>.Domain.DTO
+{
+    public class <%Entity%>Dto
+    { 
+    }
+}
