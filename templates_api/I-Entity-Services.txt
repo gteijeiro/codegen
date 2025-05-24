@@ -1,0 +1,41 @@
+﻿using <%ProductName%>.Domain.DTO;
+
+namespace <%ProductName%>.Domain.Interfaces.Services
+{
+    /// <summary>
+    /// Service interface for managing Work entities.
+    /// </summary>
+    public interface I<%Entity%>Service
+    {
+        /// <summary>
+        /// Get all items of <%Entity%> table.
+        /// </summary>
+        /// <returns>A list of all <%Entity%> entities.</returns>
+        Task<IList<<%Entity%>Dto>> GetAll();
+
+        /// <summary>
+        /// Get a single <%Entity%> entity by its identifier.
+        /// </summary>
+        /// <param name="id">The identifier of the <%Entity%> entity.</param>
+        /// <returns>The <%Entity%> entity with the specified identifier.</returns>
+        Task<<%Entity%>Dto> GetOne(int id);
+
+        /// <summary>
+        /// Update an existing <%Entity%> entity.
+        /// </summary>
+        /// <param name="entityInput">The <%Entity%> entity to update.</param>
+        Task Update(<%Entity%>Dto entityInput);
+
+        /// <summary>
+        /// Add a new <%Entity%> entity.
+        /// </summary>
+        /// <param name="<%Entity%>">The <%Entity%> entity to add.</param>
+        Task Add(<%Entity%>Dto entityInput);
+
+        /// <summary>
+        /// Delete a <%Entity%> entity by its identifier.
+        /// </summary>
+        /// <param name="id">The identifier of the <%Entity%> entity to delete.</param>
+        Task Delete(int id);
+    }
+}

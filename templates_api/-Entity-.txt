@@ -1,0 +1,6 @@
+namespace <%ProductName%>.Domain.Entity
+{
+    public class <%Entity%>
+    { 
+    }
+}
